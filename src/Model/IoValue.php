@@ -28,6 +28,7 @@ class IoValue extends Model
                 $format = 'S';
                 break;
             case 4:
+            case 8:
                 $format = 'L';
                 break;
 
@@ -48,6 +49,7 @@ class IoValue extends Model
                 $format = 's';
                 break;
             case 4:
+            case 8:
                 $format = 'l';
                 break;
 
@@ -56,6 +58,11 @@ class IoValue extends Model
         }
 
         return $this->format($format);
+    }
+
+    public function toAscii()
+    {
+        return pack("H*", $this->toHex());
     }
 
     private function format(string $format)
